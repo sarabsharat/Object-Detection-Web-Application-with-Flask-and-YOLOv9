@@ -51,7 +51,7 @@ def predict_img():
                 img = cv2.imread(filepath)
 
                 # Perform the detection
-                model = YOLO('yolov9c.pt')
+                model = YOLO('best.pt')
                 detections =  model(img, save=True) 
                 return display(f.filename)
             
@@ -68,7 +68,7 @@ def predict_img():
                 out = cv2.VideoWriter('output.mp4', fourcc, 30.0, (frame_width, frame_height))
                 
                 # initialize the YOLOv8 model here
-                model = YOLO('yolov9c.pt')
+                model = YOLO('best.pt')
                 
                 while cap.isOpened():
                     ret, frame = cap.read()
@@ -160,5 +160,5 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Flask app exposing yolov9 models")
     parser.add_argument("--port", default=5000, type=int, help="port number")
     args = parser.parse_args()
-    model = YOLO('yolov9c.pt')
+    model = YOLO('best.pt')
     app.run(host="0.0.0.0", port=args.port) 
